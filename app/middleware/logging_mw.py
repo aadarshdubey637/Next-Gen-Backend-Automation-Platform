@@ -25,10 +25,9 @@ class LoggingMiddleware(BaseHTTPMiddleware):
             response = await call_next(request)
 
             elapsed_ms = (time.perf_counter() - start) * 1000
-            # Only log errors or slow requests in terminal, or keep it all in file
-            # For now, let's keep it in file only unless it's a warning/error
+            # Silence auth logs for clean production logs
             if response.status_code >= 400:
-                logger.warning(
+                logger.error(
                     f"← {response.status_code} | {elapsed_ms:.1f}ms "
                     f"| {request.method} {request.url.path}"
                 )

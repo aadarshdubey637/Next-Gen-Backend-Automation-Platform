@@ -29,12 +29,12 @@ from app.core.route_builder import load_and_mount_all_schemas
 import sys
 from loguru import logger
 
-# Remove default terminal logging and show WARNING in terminal to keep it clean
+# Silent mode for production/terminal (Only errors in terminal)
 logger.remove()
 logger.add(
     sys.stderr, 
-    level="WARNING",
-    format="<green>{time:HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{message}</cyan>"
+    level="ERROR",
+    format="<red>{time:HH:mm:ss}</red> | <level>{level: <8}</level> | <cyan>{message}</cyan>"
 )
 
 # File logging configured once
