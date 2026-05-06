@@ -1,0 +1,38 @@
+# Core
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic[email]
+email-validator
+pydantic-settings
+
+# Database - SQL
+sqlalchemy[asyncio]
+aiomysql
+cryptography
+asyncpg
+alembic
+
+# Database - NoSQL
+motor
+pymongo
+
+# Database - Redis
+redis
+
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==3.2.0
+
+# AI
+openai
+google-genai
+
+# Middleware & Utilities
+python-multipart
+slowapi
+loguru
+httpx
+jinja2
+aiofiles

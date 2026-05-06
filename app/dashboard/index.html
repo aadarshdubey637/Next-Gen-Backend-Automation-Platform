@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBackend — Next-Gen AI Backend Automation</title>
+    <meta name="description" content="Generate production-ready backend APIs from schemas or AI prompts in seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <!-- ═══ Ambient Background ═══ -->
+    <div class="ambient-bg">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav class="nav-bar" id="nav-bar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">⚡</div>
+                <span class="brand-text">AutoBackend</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How it Works</a>
+                <a href="#live-builder" class="nav-link">Live Builder</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <div class="user-menu" id="user-menu">
+                    <button class="btn btn-ghost" id="btn-login-trigger" onclick="showAuthModal()">Sign In</button>
+                    <div class="avatar hidden" id="avatar-btn">U</div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-name" id="dropdown-name">Not logged in</div>
+                            <div class="dropdown-role" id="dropdown-role">—</div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="btn-logout" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+                <a href="#live-builder" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ Hero Section ═══ -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                We raised $1M as pre-seed fund
+            </div>
+            <h1 class="hero-title">
+                Next Gen <span class="gradient-text">Backend Automation</span> Platform
+            </h1>
+            <p class="hero-subtitle">
+                Generate production-ready APIs, database schemas, and documentation in seconds using AI. 
+                Focus on your frontend, let us handle the heavy lifting.
+            </p>
+            <div class="hero-ctas">
+                <a href="#live-builder" class="btn btn-primary btn-lg">Start Building Free</a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg">Learn More</a>
+            </div>
+
+            <!-- Hero Preview (Live Builder Snippet) -->
+            <div class="hero-preview glass-card">
+                <div class="preview-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="preview-title">api-generator.v1.0</div>
+                </div>
+                <div class="preview-body">
+                    <div class="code-snippet">
+                        <span class="code-line"><span class="code-keyword">POST</span> /api/v1/schemas/from-prompt</span>
+                        <span class="code-line"><span class="code-bracket">{</span></span>
+                        <span class="code-line">  <span class="code-key">"prompt"</span>: <span class="code-string">"Create a secure e-commerce API with products and orders"</span>,</span>
+                        <span class="code-line">  <span class="code-key">"db_type"</span>: <span class="code-string">"postgresql"</span></span>
+                        <span class="code-line"><span class="code-bracket">}</span></span>
+                    </div>
+                    <div class="preview-status">
+                        <span class="status-badge success">201 Created</span>
+                        <span class="status-time">142ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Trusted By ═══ -->
+    <section class="trusted-section">
+        <div class="container">
+            <p class="trusted-text">TRUSTED BY TEAMS AT</p>
+            <div class="logo-cloud">
+                <div class="logo-item">Vélo Québec</div>
+                <div class="logo-item">Nuxt</div>
+                <div class="logo-item">logoipsum</div>
+                <div class="logo-item">CYCLONE</div>
+                <div class="logo-item">DISCORD</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Problem & Solution ═══ -->
+    <section class="problem-solution-section">
+        <div class="container">
+            <div class="section-tag">Challenges</div>
+            <h2 class="section-title">Access to the future of work</h2>
+            <p class="section-subtitle">Experience AI-driven features: intelligent automation, seamless integrations, and real-time insights.</p>
+            
+            <div class="ps-grid">
+                <div class="ps-card glass-card">
+                    <div class="ps-icon-box red"><i data-lucide="zap-off"></i></div>
+                    <h3>Slow Development</h3>
+                    <p>Traditional backend development takes weeks of boilerplate and testing.</p>
+                </div>
+                <div class="ps-card glass-card">
+                    <div class="ps-icon-box green"><i data-lucide="zap"></i></div>
+                    <h3>Instant APIs</h3>
+                    <p>AutoBackend generates fully-functional, secure APIs in milliseconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ How It Works ═══ -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-tag">Workflow</div>
+            <h2 class="section-title">From Idea to Production in 3 Steps</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>Prompt</h3>
+                    <p>Describe your data model in plain English or JSON.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Generate</h3>
+                    <p>Our AI engine creates schemas, routes, and controllers.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>Test</h3>
+                    <p>Instantly test your new endpoints with our built-in tester.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Live API Builder (Core Component) ═══ -->
+    <section id="live-builder" class="live-builder-section">
+        <div class="container">
+            <div class="section-tag">Interactive</div>
+            <h2 class="section-title">Build Your Backend Live</h2>
+            
+            <div class="builder-layout">
+                <!-- Generator Controls -->
+                <div class="builder-sidebar">
+                    <div class="glass-card p-24">
+                        <div class="mode-tabs">
+                            <button class="mode-tab active" data-mode="prompt" onclick="switchMode('prompt')">AI Prompt</button>
+                            <button class="mode-tab" data-mode="json" onclick="switchMode('json')">JSON</button>
+                        </div>
+
+                        <div id="mode-prompt" class="mode-panel active">
+                            <div class="form-group">
+                                <label>What should we build?</label>
+                                <textarea id="ai-prompt" class="input" placeholder="e.g. A blog system with posts and comments..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Database Engine</label>
+                                <select id="prompt-db-type" class="input">
+                                    <option value="postgresql">PostgreSQL (SQL)</option>
+                                    <option value="mongodb">MongoDB (NoSQL)</option>
+                                    <option value="mysql">MySQL (SQL)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-full" onclick="generateFromPrompt()">
+                                <span class="btn-text">Generate Backend</span>
+                                <span class="btn-loader hidden"></span>
+                            </button>
+                        </div>
+
+                        <div id="mode-json" class="mode-panel">
+                            <div class="form-group">
+                                <label>JSON Schema</label>
+                                <textarea id="json-editor" class="input code-font" placeholder='{ "name": "User", ... }'></textarea>
+                            </div>
+                            <button class="btn btn-secondary btn-full mb-12" onclick="loadExample()">Load Example</button>
+                            <button class="btn btn-primary btn-full" onclick="generateFromJSON()">
+                                <span class="btn-text">Generate API</span>
+                                <span class="btn-loader hidden"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Display -->
+                <div class="builder-main">
+                    <div id="result-panel" class="glass-card result-card" style="display: none;">
+                        <div class="result-header">
+                            <h3>Generated API Endpoints</h3>
+                            <button class="btn btn-ghost btn-sm" onclick="closeResult()">×</button>
+                        </div>
+                        <div id="result-content" class="result-body">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder if no result -->
+                    <div id="builder-placeholder" class="builder-placeholder glass-card">
+                        <div class="placeholder-icon">🚀</div>
+                        <h3>Your API will appear here</h3>
+                        <p>Use the generator on the left to start</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ API Testing Interface ═══ -->
+    <section id="api-tester" class="tester-section">
+        <div class="container">
+            <div class="section-tag">Tooling</div>
+            <h2 class="section-title">Instant API Testing</h2>
+            
+            <div class="tester-layout glass-card">
+                <div class="tester-header">
+                    <div class="tester-api-selector" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <label style="display: block; margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem;">Quick Select API:</label>
+                        <select id="tester-api-list" class="input" onchange="onApiSelect(this.value)">
+                            <option value="">-- Choose a Generated API --</option>
+                        </select>
+                    </div>
+                    <div class="tester-url-bar">
+                        <select id="tester-method" class="method-select">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                        <input type="text" id="tester-url" class="url-input" placeholder="/api/v1/resource">
+                        <button class="btn btn-primary" onclick="sendRequest()">Send</button>
+                    </div>
+                </div>
+                <div class="tester-body">
+                    <div class="tester-req">
+                        <div class="tabs">
+                            <button class="tab active" onclick="switchTesterTab('body')">Body</button>
+                            <button class="tab" onclick="switchTesterTab('headers')">Headers</button>
+                        </div>
+                        <div id="tester-body-panel" class="tab-panel">
+                            <textarea id="tester-body" class="input code-font" placeholder='{ "key": "value" }'></textarea>
+                        </div>
+                        <div id="tester-headers-panel" class="tab-panel hidden">
+                            <textarea id="tester-headers" class="input code-font" placeholder='{ "Authorization": "Bearer ..." }'></textarea>
+                        </div>
+                    </div>
+                    <div class="tester-res">
+                        <div class="res-header">
+                            <span>Response</span>
+                            <span id="response-status" class="status"></span>
+                        </div>
+                        <pre id="response-body" class="res-body code-font">Click send to see response...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Dashboard Preview ═══ -->
+    <section class="dashboard-preview-section">
+        <div class="container">
+            <div class="section-tag">Monitoring</div>
+            <h2 class="section-title">Manage Everything in One Place</h2>
+            
+            <div class="preview-grid">
+                <div class="preview-card glass-card">
+                    <div class="card-label">API Usage</div>
+                    <div class="card-value">1.2M</div>
+                    <div class="card-graph">
+                        <div class="bar" style="height: 40%"></div>
+                        <div class="bar" style="height: 60%"></div>
+                        <div class="bar" style="height: 80%"></div>
+                        <div class="bar" style="height: 50%"></div>
+                        <div class="bar" style="height: 90%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                    </div>
+                </div>
+                <div class="preview-card glass-card">
+                    <div class="card-label">Active Schemas</div>
+                    <div class="card-value" id="stat-schemas-preview">24</div>
+                    <p>Production ready models</p>
+                </div>
+                <div class="preview-card glass-card highlight">
+                    <div class="card-label">System Health</div>
+                    <div class="card-value text-green" id="stat-health">99.9%</div>
+                    <p>Uptime guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Features Grid ═══ -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-tag">Features</div>
+            <h2 class="section-title">Powerful Developer Tools</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <i data-lucide="database"></i>
+                    <h3>Multi-DB Support</h3>
+                    <p>PostgreSQL, MongoDB, and MySQL supported out of the box.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="shield-check"></i>
+                    <h3>Built-in Auth</h3>
+                    <p>JWT-based authentication and RBAC for all generated APIs.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="code"></i>
+                    <h3>Auto Documentation</h3>
+                    <p>Swagger/OpenAPI docs generated automatically for every endpoint.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="activity"></i>
+                    <h3>Rate Limiting</h3>
+                    <p>Protect your APIs with configurable rate limiting and logging.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="cpu"></i>
+                    <h3>AI Generation</h3>
+                    <p>Use natural language to describe your backend requirements.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="layout"></i>
+                    <h3>Modern Dashboard</h3>
+                    <p>Beautiful UI to manage your schemas, keys, and monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Pricing ═══ -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-tag">Pricing</div>
+            <h2 class="section-title">Scale as you grow</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card glass-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/mo</span></div>
+                    <ul>
+                        <li>3 APIs</li>
+                        <li>PostgreSQL Only</li>
+                        <li>Standard Support</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-full">Get Started</button>
+                </div>
+                <div class="pricing-card glass-card featured">
+                    <div class="card-badge">Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$29<span>/mo</span></div>
+                    <ul>
+                        <li>Unlimited APIs</li>
+                        <li>All Databases</li>
+                        <li>Priority Support</li>
+                        <li>Custom Domains</li>
+                    </ul>
+                    <button class="btn btn-primary btn-full">Start Pro Trial</button>
+                </div>
+                <div class="pricing-card glass-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>SLA Guarantee</li>
+                        <li>On-premise option</li>
+                        <li>Dedicated Manager</li>
+                        <li>White-labeling</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-full">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-icon">⚡</div>
+                    <span class="brand-text">AutoBackend</span>
+                    <p>Accelerating backend development with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="/docs">Documentation</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AutoBackend. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══ Auth Modal ═══ -->
+    <div class="modal-overlay hidden" id="auth-modal">
+        <div class="modal glass-card">
+            <div class="modal-header">
+                <h2 id="auth-modal-title">Welcome Back</h2>
+                <p class="modal-subtitle" id="auth-modal-subtitle">Sign in to your account</p>
+                <button class="modal-close" onclick="hideAuthModal()">×</button>
+            </div>
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <div class="form-group" id="signup-email-group" style="display:none">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" class="input" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="auth-username" class="input" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" class="input" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="auth-submit-btn">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-loader hidden"></span>
+                </button>
+            </form>
+            <div class="modal-footer">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <button class="btn btn-link" id="auth-toggle-btn" onclick="toggleAuthMode()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Error Modal ═══ -->
+    <div class="modal-overlay hidden" id="error-modal">
+        <div class="modal glass-card error-modal-content">
+            <div class="modal-header">
+                <div class="error-icon-circle">!</div>
+                <h2 id="error-modal-title">Error</h2>
+                <button class="modal-close" onclick="closeErrorModal()">×</button>
+            </div>
+            <div class="error-modal-body" id="error-modal-body">
+                <!-- Error details -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-full" onclick="closeErrorModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Toast Container ═══ -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/static/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
