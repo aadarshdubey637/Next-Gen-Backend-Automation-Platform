@@ -1,6 +1,7 @@
 """
 Application configuration — loads from .env with sensible defaults.
 """
+from pydantic import Field, AliasChoices
 from pydantic_settings import BaseSettings
 from typing import Optional
 
@@ -20,7 +21,10 @@ class Settings(BaseSettings):
     JWT_REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     # ── Database ──────────────────────────────────────
-    POSTGRES_URL: str = "sqlite+aiosqlite:///./backend.db"
+    MYSQL_URL: str = Field(
+        default="mysql+aiomysql://user:password@localhost:3306/db_name",
+        validation_alias=AliasChoices("MYSQL_URL", "DATABASE_URL")
+    )
     POSTGRES_ECHO: bool = False
 
     # ── MongoDB ─────────────────────────────────────────

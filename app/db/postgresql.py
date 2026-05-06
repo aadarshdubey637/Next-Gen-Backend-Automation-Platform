@@ -9,14 +9,12 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
+# Create async engine
 engine = create_async_engine(
-    settings.POSTGRES_URL,
+    settings.MYSQL_URL,
     echo=settings.POSTGRES_ECHO,
-    pool_size=20,           # Keep up to 20 connections open
-    max_overflow=10,        # Allow 10 extra connections during spikes
-    pool_timeout=60,        # Increased to 60s to handle slow SQLite/disk
-    pool_recycle=1800,      # Recycle connections every 30 mins to prevent timeouts
-    pool_pre_ping=True,     # Check connection health before using it
+    future=True,
+    pool_pre_ping=True,
 )
 
 async_session = async_sessionmaker(
