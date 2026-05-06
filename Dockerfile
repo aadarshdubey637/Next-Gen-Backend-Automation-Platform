@@ -1,13 +1,18 @@
 # ── Stage 1: Build Frontend ──
-FROM node:18-alpine AS frontend-builder
+FROM node:18 AS frontend-builder
 WORKDIR /frontend
+
+# Copy package files
 COPY frontend/package*.json ./
-# Use npm ci for faster, more reliable builds if package-lock exists
+
+# Clean install dependencies
 RUN npm install
+
+# Copy source code
 COPY frontend/ ./
-# Fix potential permission issues with vite
-RUN chmod +x node_modules/.bin/vite
-RUN npm run build
+
+# Run build using npx to avoid permission issues
+RUN npx vite build
 
 # ── Stage 2: Backend & Final Image ──
 FROM python:3.12-slim
