@@ -2,8 +2,11 @@
 FROM node:18-alpine AS frontend-builder
 WORKDIR /frontend
 COPY frontend/package*.json ./
+# Use npm ci for faster, more reliable builds if package-lock exists
 RUN npm install
 COPY frontend/ ./
+# Fix potential permission issues with vite
+RUN chmod +x node_modules/.bin/vite
 RUN npm run build
 
 # ── Stage 2: Backend & Final Image ──

@@ -1,0 +1,16 @@
+node_modules
+frontend/node_modules
+dist
+frontend/dist
+.env
+venv
+.venv
+__pycache__
+*.pyc
+.git
+.github
+*.log
+logs
+Dockerfile
+docker-compose.yml
+.dockerignore
